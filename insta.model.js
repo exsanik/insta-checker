@@ -9,6 +9,10 @@ const AdminSchema = new Schema({
 	chatid: {
 		type: String,
 		required: true
+	},
+	title: {
+		type: String,
+		required: true
 	}
 })
 
@@ -20,6 +24,10 @@ const VipSchema = new Schema({
 	chatid: {
 		type: String,
 		required: true
+	},
+	title: {
+		type: String,
+		required: true
 	}
 })
 
@@ -29,6 +37,10 @@ const LinkSchema = new Schema({
 		required: true
 	},
 	chatid: {
+		type: String,
+		required: true
+	},
+	title: {
 		type: String,
 		required: true
 	}
