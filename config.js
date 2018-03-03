@@ -1,4 +1,4 @@
 module.exports = {
-	TOKEN: '463171731:AAGC3nVFMSFbsdqWZe6aGOAyAJFYjQ5dySM',
+	TOKEN: '446093857:AAHRY8iQASpNnScUQs5dke7RqfM94YaPRiM',
 	master: '342192414'
 }
