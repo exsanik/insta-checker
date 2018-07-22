@@ -113,7 +113,7 @@ function getUserNames(url, user, len)
       console.error('Search failed:', error)
     }).then( () => {
       nightmare.evaluate( () => {
-        return Array.from(document.querySelectorAll('._2g7d5')).map(element => element.innerText);       
+        return Array.from(document.querySelectorAll('.FPmhX')).map(element => element.innerText);       
       }).then((innerTexts) => {
         console.log(innerTexts)
         for(var i = 0; i < innerTexts.length; i++)
@@ -147,7 +147,7 @@ function getUserNames(url, user, len)
 
   function clickLoadMore() {
     nightmare
-      .click('._m3m1c')
+      .click('.vTJ4h')
       .wait(400)
   }
 }
@@ -280,7 +280,7 @@ bot.onText(/\/unvip (.+)/, (msg, [source, match]) => {
 
 bot.onText(/\/setadmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.username === "Exsa_N")
+	if(msg.from.id === "342192414")
 	{
 		var admdata = {
 					"username": `${match}`,
@@ -291,12 +291,12 @@ bot.onText(/\/setadmin (.+)/, (msg, [source, match]) => {
   	bot.sendMessage(id, `${match} стал(а) администратом`)
 	}
 	else
-		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @Exsa_N")
+		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @ExsaNik")
 })
 
 bot.onText(/\/deladmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.username === "Exsa_N")
+	if(msg.from.id === "342192414")
 	{
 		var admdata = {
 					"username": `${match}`,
@@ -312,7 +312,7 @@ bot.onText(/\/deladmin (.+)/, (msg, [source, match]) => {
   	bot.sendMessage(id, `${match} перестал(а) быть администратом`)
 	}
 	else
-		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @Exsa_N")
+		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @ExsaNik")
 })
 
 
