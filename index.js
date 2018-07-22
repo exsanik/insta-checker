@@ -280,7 +280,7 @@ bot.onText(/\/unvip (.+)/, (msg, [source, match]) => {
 
 bot.onText(/\/setadmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.id === "342192414")
+	if(msg.from.id === 342192414)
 	{
 		var admdata = {
 					"username": `${match}`,
@@ -296,7 +296,7 @@ bot.onText(/\/setadmin (.+)/, (msg, [source, match]) => {
 
 bot.onText(/\/deladmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.id === "342192414")
+	if(msg.from.id === 342192414)
 	{
 		var admdata = {
 					"username": `${match}`,
