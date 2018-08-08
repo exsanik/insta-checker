@@ -167,7 +167,7 @@ function callback(link, len)
   console.log(`Len: ${len}`)
   if(link_success >= len)
   	user_link_success = true
-  if(user_link_success === false)
+  else if(user_link_success === false)
   {
   	del = true
   	console.log(`Delete ${del}`)
