@@ -65,7 +65,7 @@ bot.onText((/(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)(.+)/) || (/(https?:\
 	var link_db = [];
 	var checkMsg = msg.message_id+1
 	var allelectroncheck = 0
-	var del = true
+	var del = false
 	var res = true
 	var userWasAdm = false
 	var firstCheckAdm = true
