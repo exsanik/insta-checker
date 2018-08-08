@@ -165,7 +165,7 @@ function callback(link, len)
   console.log(`Need to comment: ${needToCom}`)
   console.log(`link success ${link_success}`)
   console.log(`Len: ${len}`)
-  if(link_success >= len)
+  if(link_success > len)
   	user_link_success = true
   else if(user_link_success === false)
   {
