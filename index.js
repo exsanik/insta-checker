@@ -55,12 +55,11 @@ bot.onText(/\/start/, msg => {
 	bot.sendMessage(config.master, `New partisipant\n\n========== ${debug(msg)} \n============\n@${msg.from.username}`)
 })
 
-bot.onText((/(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)(.+)/) || (/(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?) (.+)/), (msg, [source, match]) => {
+bot.onText((/(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)/) || (/(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?) (.+)/), (msg, [source, match]) => {
 	const {chat: {id}} = msg
 	var linkdata = {
 					"link": `${source}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 				}
 	var link_db = [];
 	var checkMsg = msg.message_id+1
@@ -90,12 +89,6 @@ function searchLinks()
 			})
 			console.log(link_db)
 			var linkdb_len = link_db.length
-			if(linkdb_len === 0)
-			{
-				linkdata = new Link(linkdata).save()
-				lastCheck(false)
-				return
-			}
 			for(var i = 0; i < linkdb_len; i++)
 				getUserNames(link_db[i], msg.from.username, linkdb_len)
 		})
@@ -113,7 +106,7 @@ function getUserNames(url, user, len)
       console.error('Search failed:', error)
     }).then( () => {
       nightmare.evaluate( () => {
-        return Array.from(document.querySelectorAll('.FPmhX')).map(element => element.innerText);       
+        return Array.from(document.querySelectorAll('._2g7d5')).map(element => element.innerText);       
       }).then((innerTexts) => {
         console.log(innerTexts)
         for(var i = 0; i < innerTexts.length; i++)
@@ -147,7 +140,7 @@ function getUserNames(url, user, len)
 
   function clickLoadMore() {
     nightmare
-      .click('.vTJ4h')
+      .click('._m3m1c')
       .wait(400)
   }
 }
@@ -167,7 +160,7 @@ function callback(link, len)
   console.log(`Len: ${len}`)
   if(link_success >= len)
   	user_link_success = true
-  else if(user_link_success === false)
+  if(!user_link_success)
   {
   	del = true
   	console.log(`Delete ${del}`)
@@ -239,8 +232,7 @@ bot.onText(/\/vip (.+)/, (msg, [source, match]) => {
   	{
   		var vipdata = {
 					"username": `${match}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 				}
   		vipdata = new Vip(vipdata).save()
   		bot.sendMessage(id, `${match} стал(а) VIP'ом`)
@@ -264,8 +256,7 @@ bot.onText(/\/unvip (.+)/, (msg, [source, match]) => {
   	{
   		var vipdata = {
 					"username": `${match}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 				}
 			Vip.findOneAndRemove(vipdata, err => {
 				if(err)
@@ -280,28 +271,26 @@ bot.onText(/\/unvip (.+)/, (msg, [source, match]) => {
 
 bot.onText(/\/setadmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.id === 342192414)
+	if(msg.from.username === "Exsa_N")
 	{
 		var admdata = {
 					"username": `${match}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 				}
 		admdata = new Admin(admdata).save()
   	bot.sendMessage(id, `${match} стал(а) администратом`)
 	}
 	else
-		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @ExsaNik")
+		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @Exsa_N")
 })
 
 bot.onText(/\/deladmin (.+)/, (msg, [source, match]) => {
 	const {chat: {id}} = msg
-	if(msg.from.id === 342192414)
+	if(msg.from.username === "Exsa_N")
 	{
 		var admdata = {
 					"username": `${match}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 				}
 		Admin.findOneAndRemove(admdata, err => {
 				if(err)
@@ -312,13 +301,9 @@ bot.onText(/\/deladmin (.+)/, (msg, [source, match]) => {
   	bot.sendMessage(id, `${match} перестал(а) быть администратом`)
 	}
 	else
-		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @ExsaNik")
+		bot.sendMessage(id, "У вас нет доступа к этой функции, обратитесь к @Exsa_N")
 })
 
-
-//GETLINKS
-//-------------------------
-//Никита сорян,
 bot.onText(/\/getlinks/, msg => {
 	const {chat: {id}} = msg
 	var link_db = []
@@ -332,7 +317,7 @@ bot.onText(/\/getlinks/, msg => {
 		if(linkdb_len != 0)
 		{
 			for(var i = 0; i < linkdb_len; i++)
-				textLinks += `\n\u{2705}${link_db[i]} \u{2705} - /delete${i}\n`
+				textLinks += `\n\u{2705}${link_db[i]}\u{2705} - /delete${i}\n`
 		}
 		else
 			textLinks += " пуст"
@@ -361,39 +346,16 @@ bot.onText(/\/delete(.+)/, (msg, [source, match]) => {
 				link_db.push(f.link)
 			})
 			console.log(ind)
-			console.log(link_db)
 			console.log(link_db[ind])
 			var linkdata = {
 					"link": `${link_db[ind]}`,
-					"chatid": `${id}`,
-					"title": `${msg.chat.title}`
+					"chatid": `${id}`
 			}
-			
 			Link.findOneAndRemove(linkdata, err => {
 				if(err)
 					console.log(err)
 				else
-					{
-						link_db = [] ////Новый вывод ссылок
-						var textLinks = `Готово\nСписок ссылок:`
-						Link.find({chatid: `${id}`}).then(l => {
-							l.map((f, i) => {
-							link_db.push(f.link)
-							})
-							var linkdb_len = link_db.length
-
-							if(linkdb_len != 0)
-							{
-								for(var i = 0; i < linkdb_len; i++)
-									textLinks += `\n\u{2705}${link_db[i]} \u{2705} - /delete${i}\n`
-							}
-							else
-								textLinks += " пуст"
-							bot.sendMessage(id, textLinks,{
-								disable_web_page_preview: true
-							})
-						})//---------------------
-					}
+					console.log("deleted")
 				})
 			})
   	}
