@@ -5,7 +5,7 @@ const cron = require('node-cron')
 const Nightmare = require('nightmare')
 
 
-mongoose.connect('mongodb://exsa:357nik@ds040167.mlab.com:40167/instachekerbot')
+mongoose.connect('MONGOOSE_TOKEN')
 	.then(() => console.log('MongoDb connected'))
 	.catch((err) => console.log(err))
 
