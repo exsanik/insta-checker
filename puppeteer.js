@@ -50,7 +50,7 @@ async function checkUserName (browser, link, username)
   return false;
 }
 
-//Returns array which is true or false for each link from array so we can say if there is users username under post or not
+//Returns array which is true or false for each link from array so we can say if there is user's username under post or not
 async function getCommentedLinks(browser, links)
 {
   let result = [];
